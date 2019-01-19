@@ -47,7 +47,7 @@ namespace vic_190113_students
         }
         public Person()
         {
-            Console.WriteLine("ERROR - Empty person entered");
+            //Console.WriteLine("ERROR - Empty person entered");
             Name = "ERROR";
             Sex = "ERROR";
             Age = -1;
@@ -62,6 +62,14 @@ namespace vic_190113_students
         virtual public void Show()
         {
             Console.WriteLine($"Name: {Name} | Sex: {Sex} | Age: {Age}");
+        }
+
+        public void FindSameSex(string neededSex)
+        {
+            if (Sex == neededSex)
+            {
+                Console.WriteLine("All persons with sex = " + neededSex + ": " + Name);
+            }
         }
     }
 }

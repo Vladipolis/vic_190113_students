@@ -17,12 +17,16 @@ namespace vic_190113_students
 
         public Employee() : base() //Вызываем конструктор базового класса
         {
-            
+            Title = "ERROR";
         }
-        //public Employee(string n, string s, double a) : base(n, s, a) //Вызываем конструктор базового класса
-        //{
-        //    Title = "ERROR";
-        //}
+        public Employee(string n, string s, double a) : base(n, s, a) //Вызываем конструктор базового класса
+        {
+            Title = "ERROR";
+        }
+        public Employee(string n, string s, double a, string t) : base(n, s, a) //Вызываем конструктор базового класса
+        {
+            Title = t;
+        }
         public Employee(Person per, string t)
         {
             Name = per.Name;
