@@ -63,8 +63,14 @@ namespace vic_190113_students
             {
                 per.Show();
             }
-            Console.WriteLine("***********************SORT:****************************");
+            Console.WriteLine("***********************SORT by NAME:****************************");
             Array.Sort(perArr);
+            foreach (Person per in perArr)
+            {
+                per.Show();
+            }
+            Console.WriteLine("***********************SORT by AGE:****************************");
+            Array.Sort(perArr, new SortByAge());
             foreach (Person per in perArr)
             {
                 per.Show();

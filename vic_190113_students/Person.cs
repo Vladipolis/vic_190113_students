@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace vic_190113_students
 {
+    class SortByAge:IComparer<Person> //Обобщенный интерфейс (будет работать с объектами типа Персон => не надо будет делать приведение типов
+    {
+        public int Compare (Person p1, Person p2)
+        {
+            if (p1.Age > p2.Age) return 1;
+            else if (p1.Age < p2.Age) return -1;
+            else return 0;
+        }
+    }
     class Person:IComparable
     {
         protected string name;
