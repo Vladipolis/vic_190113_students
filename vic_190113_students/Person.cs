@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vic_190113_students
 {
-    class Person
+    class Person:IComparable
     {
         protected string name;
         protected string sex;
@@ -59,10 +59,10 @@ namespace vic_190113_students
             Sex = s;
             Age = a;
         }
-        virtual public void Show()
-        {
-            Console.WriteLine($"Name: {Name} | Sex: {Sex} | Age: {Age}");
-        }
+        //virtual public void Show()
+        //{
+        //    Console.WriteLine($"Name: {Name} | Sex: {Sex} | Age: {Age}");
+        //}
 
         public void FindSameSex(string neededSex)
         {
@@ -71,5 +71,43 @@ namespace vic_190113_students
                 Console.WriteLine("All persons with sex = " + neededSex + ": " + Name);
             }
         }
+
+        public override string ToString()
+        {
+            string str = Name + ", " + Age.ToString() + ", ";
+            if (Sex == "Man") str += "мужской";
+            else str += "женский";
+            return str;
+        }
+        virtual public void Show()
+        {
+            Console.WriteLine(ToString());
+        }
+
+        //Переопределяем иквал для сравнения
+        public override bool Equals(object obj)
+        {
+            Person p = (Person)obj;
+            if (this.Name == p.Name && this.Age == p.Age && this.Sex == p.Sex)
+                return true;
+            else
+                return false;
+        }
+
+        static public bool operator ==(Person p1, Person p2)
+        {
+            return p1.Equals(p2);
+        }
+        static public bool operator !=(Person p1, Person p2)
+        {
+            return !p1.Equals(p2);
+        }
+
+        public int CompareTo(object obj)
+        {
+            Person p = (Person)obj;
+            return String.Compare(this.Name, p.Name);
+        }
+
     }
 }

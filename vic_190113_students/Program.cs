@@ -18,6 +18,8 @@ namespace vic_190113_students
             Console.WriteLine("------------");
             Person p3 = new Person("Petrov", "Zh", 77);
             p3.Show();
+            Person p4 = new Person("Petrov", "Zh", 77);
+            p4.Show();
             Console.WriteLine("------------");
             Employee e1 = new Employee();
             e1.Show();
@@ -50,8 +52,26 @@ namespace vic_190113_students
             st3.Show();
             Console.WriteLine("------------");
             Console.WriteLine("------------");
-
+            Console.WriteLine("------------");
+            //ПРоверка сравнения
+            Console.WriteLine(p3.Equals(p4));
+            Console.WriteLine(p3==p4);
+            Console.WriteLine("***************************************************");
+            
             Person[] perArr = { p1, p2, p3, e1, e2, t1, t2, t3, st1, st2, st3 };
+            foreach (Person per in perArr)
+            {
+                per.Show();
+            }
+            Console.WriteLine("***********************SORT:****************************");
+            Array.Sort(perArr);
+            foreach (Person per in perArr)
+            {
+                per.Show();
+            }
+            Console.WriteLine("***************************************************");
+            //Проверка работы со средней оценкой для конкретного студента
+            AverageMark(perArr, st1);
             foreach (Person per in perArr)
             {
                 //per.Show();
@@ -61,7 +81,7 @@ namespace vic_190113_students
             //Count student on course
             foreach (Person per in perArr)
             {
-                
+
                 if (per is Student)
                 {
                     Student stu = per as Student;
@@ -71,13 +91,14 @@ namespace vic_190113_students
                     }
                 }
             }
+
             //Find teachers from the same kafs
             foreach (Person per in perArr)
             {
                 if (per is Teacher)
                 {
                     Teacher tea = per as Teacher;
-                    tea.FindPrepods("Kaf1"); 
+                    tea.FindPrepods("Kaf1");
                 }
             }
             //Count average student mark
@@ -91,8 +112,50 @@ namespace vic_190113_students
                 }
             }
 
+            Console.WriteLine($"Количество студентов-отличников= {CountExcellentsStudents(perArr)}");
+
+
             Console.ReadLine();
 
+        }
+        static int StudentsCount(Person[] mas, int course)
+        {
+            int count = 0;
+            foreach (Person p in mas)
+                if (p is Student)
+                    if (((Student)p).Course == course)
+                        count++;
+            return count;
+        }
+
+        static void AverageMark(Person[] mas, Student s)
+        {
+            foreach (Person p in mas)
+            {
+                if (p is Student && p == s)
+                    s.CountAverageMark();
+            }
+
+        }
+
+        //Сколько студентов сдало на отлично //ToDO НалРеференс от ререписывания == и != в Персон
+        //Решение: закомментировать перегрузки == и !=  и использовать Иквал
+        static int CountExcellentsStudents(Person[] mas)
+        {
+            int count = 0;
+            foreach (Person p in mas)
+            {
+                if (p is Student)
+                {
+                    if (p is Student)
+                    {
+                        Student s = p as Student;
+                        if (s.IsExcellentStudent()) count++;
+                        //if (s != null && s.IsExcellentStudent()) count++;
+                    }
+                }
+            }
+            return count;
         }
     }
 }
