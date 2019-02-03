@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,10 +119,78 @@ namespace vic_190113_students
             }
 
             Console.WriteLine($"Количество студентов-отличников= {CountExcellentsStudents(perArr)}");
+            Console.WriteLine("****************************************************");
+            //Hashtable ht1 = new Hashtable();
+            //for (int i=0; i<3;i++)
+            //{
+            //    Console.WriteLine("Enter name: ");
+            //    string name = Console.ReadLine();
+            //    Console.WriteLine("Enter age: ");
+            //    int age = Convert.ToInt32(Console.ReadLine());
+            //    Console.WriteLine("Enter gender: ");
+            //    string gender = Console.ReadLine();
+            //    //if (gender == "Man")
+            //    Console.WriteLine("Enter course: ");
+            //    int course = Convert.ToInt32(Console.ReadLine());
+
+            //    Student s = new Student(name, gender, age, course, st2m);
+            //    Person p = new Person(name, gender, age);
+            //    ht1.Add(p, s);
+            //}
+
+            //Console.WriteLine("HT count: " + ht1.Count.ToString());
+            //ICollection keys = ht1.Keys; //Коллекция ключей
+
+            //foreach (Person p in keys)
+            //{
+            //    Console.WriteLine(ht1[p].ToString());
+            //}
+            Console.WriteLine("****************************************************");
+            Hashtable ht2 = new Hashtable();
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Enter name: ");
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter age: ");
+                int age = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter gender: ");
+                string gender = Console.ReadLine();
+                //if (gender == "Man")
+                Console.WriteLine("Enter course: ");
+                int course = Convert.ToInt32(Console.ReadLine());
+
+                Student s = new Student(name, gender, age, course, st2m);
+                Person p = new Person(name, gender, age);
+                ht2.Add(i+1, s);
+            }
+            Console.WriteLine("HT count: " + ht2.Count.ToString());
+            ICollection keys2 = ht2.Keys; //Коллекция ключей
+            Console.WriteLine("****");
+            foreach (int i in keys2)
+            {
+                Console.WriteLine(ht2[i].ToString());
+            }
+            //Add one more element in ht2
+            Student stIvanov = new Student("Ivanovvvvvvvvvv", "m", 22, 4, st3m);
+            ht2.Add(5, stIvanov);
+            //ht2[1] = new Student("Ivanovvvvvvvvvv", "m", 22, 4, st3m);
+            Console.WriteLine("****");
+            foreach (int i in keys2)
+            {
+                Console.WriteLine(ht2[i].ToString());
+            }
+            Console.WriteLine("****");
+            Console.WriteLine("Check if element is in ht: ");
+            if (ht2.ContainsValue(stIvanov))
+                Console.WriteLine("Found");
+            else
+                Console.WriteLine("NOT found");
+
+            Queue q1 = new Queue();
+
 
 
             Console.ReadLine();
-
         }
         static int StudentsCount(Person[] mas, int course)
         {
